@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px #15171e inset !important; /* Background color */
+  box-shadow: 0 0 0px 1000px #15171e inset !important;       /* Background color */
+  -webkit-text-fill-color: white !important;                 /* Text color */
+  caret-color: white !important;                              /* Caret color */
+  border: 0px  !important;                       /* Custom border */
+  outline: none !important;                                   /* Remove default outline */
+}
+
+
