@@ -13,9 +13,9 @@ const NavBar2 = () => {
         />
 
         <div className="flex items-center gap-10">
-          <div className="flex items-center gap-5">
-            <div className="flex flex-col justify-center items-center gap-1 ">
-              <img
+          <div className="flex items-center gap-1 h-full ">
+            <div className="flex flex-col justify-center items-center gap-1 hover:bg-[#1a1c25] h-full px-4">
+              <img 
                 src="https://cb3img.s3.ap-south-1.amazonaws.com/img/iconLearn.webp"
                 alt="image"
                 className="w-7"
@@ -23,13 +23,13 @@ const NavBar2 = () => {
 
               <Link
                 to={"#"}
-                className="hover:text-[#ec7203] text-sm font-mulish"
+                className="hover:text-[#ec7203] text-sm font-mulish transition-colors duration-300"
               >
                 Learn
               </Link>
             </div>
 
-            <div className="flex flex-col justify-center items-center gap-1 ">
+            <div className="flex flex-col justify-center items-center gap-1  hover:bg-[#1a1c25]  h-full px-4 transition-colors duration-700">
               <img
                 src="https://cb3img.s3.ap-south-1.amazonaws.com/img/iconMonitor.webp"
                 alt="image"
@@ -38,13 +38,13 @@ const NavBar2 = () => {
 
               <Link
                 to={"#"}
-                className="hover:text-[#ec7203] text-sm font-mulish"
+                className="hover:text-[#ec7203] text-sm font-mulish transition-colors duration-300"
               >
                 Practise
               </Link>
             </div>
 
-            <div className="flex flex-col justify-center items-center gap-1 ">
+            <div className="flex flex-col justify-center items-center gap-1  hover:bg-[#1a1c25]  h-full px-4">
               <img
                 src="https://cb3img.s3.ap-south-1.amazonaws.com/img/iconHire.webp"
                 alt="image"
@@ -52,13 +52,13 @@ const NavBar2 = () => {
               />
               <Link
                 to={"#"}
-                className="hover:text-[#ec7203] text-sm font-mulish"
+                className="hover:text-[#ec7203] text-sm font-mulish transition-colors duration-300"
               >
                 Get Hired
               </Link>
             </div>
 
-            <div className="flex flex-col justify-center items-center gap-1 ">
+            <div className="flex flex-col justify-center items-center gap-1  hover:bg-[#1a1c25]  h-full px-4">
               <img
                 src="https://cb3img.s3.ap-south-1.amazonaws.com/img/iconIDE.webp "
                 alt="image"
@@ -66,7 +66,7 @@ const NavBar2 = () => {
               />
               <Link
                 to={"#"}
-                className="hover:text-[#ec7203] text-sm font-mulish"
+                className="hover:text-[#ec7203] text-sm font-mulish transition-colors duration-300"
               >
                 IDE
               </Link>

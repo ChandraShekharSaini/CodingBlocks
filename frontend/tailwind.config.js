@@ -1,16 +1,22 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       fontFamily: {
-        mulish: ['Mulish', 'sans-serif'],
-     
+        mulish: ["Mulish", "sans-serif"],
+      },
+
+      keyframes: {
+        slide: {
+          "0%, 100%": { transform: "translateX(0)" },
+          "50%": { transform: "translateX(40px)" },
+        },
+      },
+      animation: {
+        slide: "slide 2s ease-in-out infinite alternate",
       },
     },
   },
   plugins: [],
-}
+};
