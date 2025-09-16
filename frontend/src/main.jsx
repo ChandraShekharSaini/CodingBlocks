@@ -6,6 +6,8 @@ import { Provider } from "react-redux";
 import { store, persistor } from "./redux/store/store.jsx";
 import { PersistGate } from "redux-persist/integration/react";
 
+import UseReducer from "./UseReducer.jsx";
+
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <PersistGate persistor={persistor}>
@@ -13,5 +15,7 @@ createRoot(document.getElementById("root")).render(
         <App />
       </Provider>
     </PersistGate>
+
+    {/* <UseReducer/> */}
   </StrictMode>
 );

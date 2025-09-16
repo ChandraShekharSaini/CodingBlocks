@@ -73,7 +73,7 @@ const NavBar2 = () => {
             </div>
           </div>
 
-          <Link to={"/user/create-account/login"}>
+          <Link to={"/user/create-account/sign-in"}>
             <button className="bg-[#f36c3d] text-sm font-mulish bg-gradient-to-r from-[#f36c3d] via-[#f77639] to-[#fa7f34] px-4 py-2 rounded-sm cursor-pointer">
               Login/Signup
             </button>
