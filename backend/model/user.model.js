@@ -3,13 +3,22 @@ import mongoose, { Schema } from "mongoose";
 const userSchema = new Schema({
   name: {
     type: String,
-    required: true,
+  },
+
+  userName: {
+    type: String,
+    unique: true,
   },
 
   email: {
     type: String,
     required: true,
     unique: true,
+  },
+
+  profileUrl: {
+    type:String,
+    default: "https://cdn-icons-png.flaticon.com/512/4140/4140037.png",
   },
 
   google: {
@@ -20,19 +29,18 @@ const userSchema = new Schema({
     },
     googleId: {
       type: String,
-     
+
       unique: true,
     },
   },
 
-
-    github: {
+  github: {
     accessToken: { type: String },
     refreshToken: { type: String },
     picture: { type: String },
     githubId: {
       type: String,
-      required: true,
+
       unique: true,
     },
   },

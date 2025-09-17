@@ -4,7 +4,7 @@ const verify = (req, res, next) => {
   if (!token) {
   }
 
-  jwt.verify(token, "8767854840", (error, user) => {
+  jwt.verify(token, process.env.JWT_SECRET , (error, user) => {
     if (error) {
     }
 

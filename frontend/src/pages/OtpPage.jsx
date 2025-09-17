@@ -1,27 +1,35 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 import axios from "axios";
 import NavBar from "../components/NavBar";
 import Layout from "../components/Layout";
+import { useLocation } from "react-router-dom";
 
 const OtpPage = () => {
-  const [otp, setOtp] = useState({});
+  const [formData, setformData] = useState({});
+  const queryParams = new URLSearchParams(location.search);
+  const email = queryParams.get("email");
 
-  console.log(otp);
+    console.log(formData);
+
+
+  useEffect(() => {
+    if (email) {
+      setformData((prev) => ({ ...prev, email }));
+    }
+  }, [email]);
 
   const handleChange = (ev) => {
     const { name, value } = ev.target;
-    setOtp({ ...otp, [name]: value });
+    setformData({ ...formData, [name]: value });
   };
 
   const handleSubmit = async (ev) => {
     ev.preventDefault();
 
-    
-
     try {
       const res = await axios.post(
-        "http://localhost:3400/api/v1/auth/user/otp",
-        otp,
+        "http://localhost:3400/api/v1/auth/verify-otp",
+        formData,
         {
           headers: {
             "Content-Type": "application/json",

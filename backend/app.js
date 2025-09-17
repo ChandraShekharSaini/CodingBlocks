@@ -2,28 +2,36 @@ import express from "express";
 import session from "express-session";
 import mongoose from "mongoose";
 import jwt from "jsonwebtoken";
-import cors from 'cors'
+import cors from "cors";
+import redis from "./redis/redis.js";
+
 const app = express();
-
-
-
-
 const PORT = 3400;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(cors({
-  origin: "http://localhost:5173",
-  credentials: true,               
-  methods: ['GET', 'POST' , 'DELETE'],        
-}));
-
-console.log(
-  "==================================GoogleAuth================================"
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+    methods: ["GET", "POST", "DELETE"],
+  })
 );
+
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: false, maxAge: 1000 * 60 * 60 * 24 },
+  })
+);
+
+// ================== Google Auth ==================
 import GooglePassport from "./authentication/GoogleAuthentication.js";
 app.use(GooglePassport.initialize());
+
 app.get(
   "/auth/google",
   GooglePassport.authenticate("google", { scope: ["profile", "email"] })
@@ -36,7 +44,7 @@ app.get(
     session: false,
   }),
   function (req, res) {
-    const token = jwt.sign({ user: req.user }, "8767854840", {
+    const token = jwt.sign({ user: req.user }, process.env.JWT_SECRET, {
       expiresIn: "2h",
     });
 
@@ -46,11 +54,10 @@ app.get(
   }
 );
 
-console.log(
-  "==================================GithHubAuth================================"
-);
+// ================== Github Auth ==================
 import GithubPassport from "./authentication/GithubAuthentication.js";
 app.use(GithubPassport.initialize());
+
 app.get(
   "/auth/github",
   GithubPassport.authenticate("github", { scope: ["user:email"] })
@@ -58,10 +65,12 @@ app.get(
 
 app.get(
   "/auth/github/callback",
-  GithubPassport.authenticate("github", { failureRedirect: "/"  ,session:false}),
+  GithubPassport.authenticate("github", {
+    failureRedirect: "/",
+    session: false,
+  }),
   (req, res) => {
-
-    const token = jwt.sign({ user: req.user }, "8767854840", {
+    const token = jwt.sign({ user: req.user }, process.env.JWT_SECRET, {
       expiresIn: "2h",
     });
 
@@ -71,21 +80,24 @@ app.get(
   }
 );
 
+// ================== Auth Routes ==================
 import authRoutes from "./routes/auth.routes.js";
-
+import courseRoutes from "./routes/course.routes.js";
 app.use("/api/v1/auth", authRoutes);
+app.use("/api/v2/mentor", courseRoutes);
 
+// ================== DB Connection ==================
 mongoose
   .connect("mongodb://127.0.0.1:27017/codingblocks", {
     appName: "CodingBlocks",
   })
   .then(() => {
-    console.log("Connected To Db");
+    console.log("Connected To MongoDB");
   })
   .catch((error) => {
     console.log(error);
   });
 
 app.listen(PORT, () => {
-  console.log("http://localhost:", PORT);
+  console.log("Server running at http://localhost:" + PORT);
 });
