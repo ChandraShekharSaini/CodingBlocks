@@ -16,13 +16,13 @@ const NavBar3 = () => {
         
       
         <Link
-          to="/classroom-courses"
+          to="/classroom/courses"
           className="hover:text-[#ec7203] text-sm font-mulish transition-colors duration-300"
         >
           Classroom Courses
         </Link>
         <Link
-          to="/live-courses"
+          to="/live/courses"
           className="hover:text-[#ec7203] text-sm font-mulish transition-colors duration-300"
         >
           Live Courses

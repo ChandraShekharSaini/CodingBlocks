@@ -1,18 +1,38 @@
 import Course from "../model/course.model.js";
 
 export const coursePost = async (req, res, next) => {
-  const { name, venue, mentorName, startDate, endDate, syllabus } = req.body;
-  const { id } = req.params;
+  const {
+    name,
+    venue,
+    mentorName,
+    mentorImage,
+    startDate,
+    endDate,
+    scheduleDays,
+    startTime,
+    endTime,
+    syllabus,
+    discountedFee,
+    originalFee,
+  } = req.body;
 
-  console.log(id);
+  const { id } = req.params;
+  console.log("Mentor Ref ID:", id);
+
   try {
     const newCourse = new Course({
       name,
       venue,
       mentorName,
+      mentorImage,
       startDate,
       endDate,
+      scheduleDays,
+      startTime,
+      endTime,
       syllabus,
+      discountedFee,
+      originalFee,
       mentorRef: id,
     });
 
@@ -45,7 +65,7 @@ export const courseDelete = async (req, res, next) => {
     res.status(200).json({
       status: true,
       message: "Course is Deleted Successfully",
-      response ,
+      response,
     });
   } catch (error) {
     res.status(500).json({
@@ -57,4 +77,62 @@ export const courseDelete = async (req, res, next) => {
 
 export const courseUpdate = async (req, res, next) => {};
 
-export const courseGet = async (req, res, next) => {};
+export const courseGet = async (req, res, next) => {
+  try {
+    const allCourse = await Course.find();
+
+    res.status(200).json({
+      status: true,
+      message: "Courses fetched successfully",
+      data: allCourse,
+    });
+  } catch (error) {
+    console.error("Error fetching courses:", error);
+
+    res.status(500).json({
+      status: false,
+      message: "Internal Server Error",
+      error: error.message,
+    });
+  }
+};
+
+export const courseGetOnline = async (req, res, next) => {
+  try {
+    const onlineCourse = await Course.aggregate([{
+      $match: { venue: "Live" },
+      }]);
+
+    res.status(200).json({
+      status: true,
+      message: "Online Course Fetched   Sucessfully",
+      courses:onlineCourse,
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: false,
+      message: "Internal Server Error",
+      error: error.message,
+    });
+  }
+};
+
+export const courseGetClassroom = async (req, res, next) => {
+  try {
+    const classroomCourse = await Course.aggregate([{
+      $match: { venue: "Classroom" },
+    }]);
+
+    res.status(200).json({
+      status: true,
+      message: "Classroom Course Fetched  Sucessfully",
+      courses:classroomCourse,
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: false,
+      message: "Internal Server Error",
+      error: error.message,
+    });
+  }
+};

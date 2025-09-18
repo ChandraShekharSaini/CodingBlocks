@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 
-const userSchema = new Schema({
+const mentorSchema = new Schema({
   name: {
     type: String,
   },
@@ -17,7 +17,7 @@ const userSchema = new Schema({
   },
 
   profileUrl: {
-    type:String,
+    type: String,
     default: "https://cdn-icons-png.flaticon.com/512/4140/4140037.png",
   },
 
@@ -46,6 +46,6 @@ const userSchema = new Schema({
   },
 });
 
-const User = mongoose.model("User", userSchema);
+const Mentor = mongoose.model("User", mentorSchema);
 
-export default User;
+export default Mentor;

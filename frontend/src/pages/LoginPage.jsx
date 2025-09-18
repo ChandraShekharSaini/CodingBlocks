@@ -21,7 +21,7 @@ const LoginPage = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:3400/api/v1/auth/send-otp",
+        "http://localhost:3400/api/v1/mentor/auth/send-otp",
         formData,
         {
           headers: {

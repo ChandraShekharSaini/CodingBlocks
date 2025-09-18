@@ -1,6 +1,6 @@
 import { Strategy as GitHubStrategy } from "passport-github2";
 import passport from "passport";
-import User from '../model/user.model.js'
+import User from '../model/mentorSchema.js'
 passport.use(
   new GitHubStrategy(
     {

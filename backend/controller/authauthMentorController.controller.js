@@ -1,4 +1,4 @@
-import User from "../model/user.model.js";
+import Mentor  from "../model/mentorSchema.js";
 import { otpgenerator } from "../utils/otpsender.js";
 import { randomUserNameGenerator } from "../utils/randomUserNameGenerator.js";
 import OtpMailer from "../Mailer/OtpMailer.js";
@@ -25,8 +25,6 @@ export const sendOTP = async (req, res) => {
 export const verifyOTP = async (req, res) => {
   const { email, otp } = req.body;
 
-
-
   console.log(email, otp);
 
   const storedOtp = await redis.get(`otp:${email}`);
@@ -35,7 +33,7 @@ export const verifyOTP = async (req, res) => {
     console.log(otp);
     await redis.del(`otp:${email}`);
 
-    const existedUser = await User.findOne({ email });
+    const existedUser = await Mentor.findOne({ email });
     if (existedUser) {
       req.session.user = existedUser;
 
@@ -45,7 +43,7 @@ export const verifyOTP = async (req, res) => {
     } else {
       const randomUserName = randomUserNameGenerator(email, otp);
 
-      const newUser = await User.create({
+      const newUser = await Mentor.create({
         userName: randomUserName,
         email,
       });
@@ -98,17 +96,3 @@ export const logOut = async (req, res) => {
 };
 
 
- export const  profileDetails = async (req, res) => {
-
-      console.log("hjjhvh", req.session.user);
-      console.log("hjjhvh", req.session);
-
-
-  if (req.session.user) {
-    return res.json({
-      loggedIn: true,
-      user: req.session.user,
-    });
-  }
-  return res.json({ loggedIn: false, message: "No active session" });
-};

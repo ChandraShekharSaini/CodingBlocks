@@ -28,7 +28,7 @@ const OtpPage = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:3400/api/v1/auth/verify-otp",
+        "http://localhost:3400/api/v1/mentor/auth/verify-otp",
         formData,
         {
           headers: {

@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import passport from "passport";
-import User from "../model/user.model.js";
+import User from "../model/mentorSchema.js";
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 
 passport.use(

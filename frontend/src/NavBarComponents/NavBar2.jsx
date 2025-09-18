@@ -65,7 +65,7 @@ const NavBar2 = () => {
                 className="w-6"
               />
               <Link
-                to={"#"}
+                to={"/code/ide"}
                 className="hover:text-[#ec7203] text-sm font-mulish transition-colors duration-300"
               >
                 IDE

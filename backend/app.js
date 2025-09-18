@@ -81,10 +81,10 @@ app.get(
 );
 
 // ================== Auth Routes ==================
-import authRoutes from "./routes/auth.routes.js";
+import authMentorRoutes from "./routes/authMentor.routes.js";
 import courseRoutes from "./routes/course.routes.js";
-app.use("/api/v1/auth", authRoutes);
-app.use("/api/v2/mentor", courseRoutes);
+app.use("/api/v1/mentor/auth", authMentorRoutes);
+app.use("/api/v2/mentor/course", courseRoutes);
 
 // ================== DB Connection ==================
 mongoose

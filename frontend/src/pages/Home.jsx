@@ -10,6 +10,8 @@ import { jwtDecode } from "jwt-decode";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import CourseCard from "../components/CourseCard";
+
 
 const Home = () => {
   const navigate = useNavigate();
@@ -43,6 +45,8 @@ const Home = () => {
         </div>
 
         <HomeOne />
+
+       <CourseCard/>
 
         <HomeTwo />
 
