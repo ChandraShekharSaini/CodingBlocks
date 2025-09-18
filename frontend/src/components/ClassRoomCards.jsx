@@ -3,7 +3,7 @@ import axios from "axios";
 import { createContext, useState, useEffect } from "react";
 import CCared from "./CCared";
 
-export const ClassRoomCard = ({ typeOfCourse }) => {
+export const ClassRoomCard = ({ typeOfCourse  }) => {
 
   console.log(typeOfCourse);
   const [courses, setCourses] = useState([]);
@@ -30,14 +30,15 @@ export const ClassRoomCard = ({ typeOfCourse }) => {
 
 
 
-  if (loading) return <p className="text-center text-white border-[7px] border-red-700">Loading...</p>;
+  if (loading) return <p className=" text-center text-white ">Loading...</p>;
 
   return (
-    <div className="flex flex-wrap gap-2  ">
-      {courses.map((course, index) => (
-       <CCared course = {course} index = {index}/>
-      ))}
-    </div>
+ <div className="w-full flex flex-wrap justify-start bg-[#08090c] gap-2 pt-7">
+  {courses.map((course, index) => (
+    <CCared key={index} course={course} index={index} />
+  ))}
+</div>
+
   );
 };
 

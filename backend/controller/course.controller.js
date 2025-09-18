@@ -84,7 +84,7 @@ export const courseGet = async (req, res, next) => {
     res.status(200).json({
       status: true,
       message: "Courses fetched successfully",
-      data: allCourse,
+      course: allCourse,
     });
   } catch (error) {
     console.error("Error fetching courses:", error);
@@ -99,14 +99,16 @@ export const courseGet = async (req, res, next) => {
 
 export const courseGetOnline = async (req, res, next) => {
   try {
-    const onlineCourse = await Course.aggregate([{
-      $match: { venue: "Live" },
-      }]);
+    const onlineCourse = await Course.aggregate([
+      {
+        $match: { venue: "Live" },
+      },
+    ]);
 
     res.status(200).json({
       status: true,
       message: "Online Course Fetched   Sucessfully",
-      courses:onlineCourse,
+      courses: onlineCourse,
     });
   } catch (error) {
     res.status(500).json({
@@ -119,16 +121,48 @@ export const courseGetOnline = async (req, res, next) => {
 
 export const courseGetClassroom = async (req, res, next) => {
   try {
-    const classroomCourse = await Course.aggregate([{
-      $match: { venue: "Classroom" },
-    }]);
+    const classroomCourse = await Course.aggregate([
+      {
+        $match: { venue: "Classroom" },
+      },
+    ]);
 
     res.status(200).json({
       status: true,
       message: "Classroom Course Fetched  Sucessfully",
-      courses:classroomCourse,
+      courses: classroomCourse,
     });
   } catch (error) {
+    res.status(500).json({
+      status: false,
+      message: "Internal Server Error",
+      error: error.message,
+    });
+  }
+};
+
+export const getCourseWithTypeLimit = async (req,res, next) => {
+  const { type, limit } = req.query;
+
+  console.log(type , limit);
+
+  try {
+
+    const result = await Course.aggregate([
+  { $match: type ? { venue: type } : {} },
+  { $limit: parseInt(limit) || 5 }
+]);
+
+
+    res.status(200).json({
+      status: true,
+      message: "Course Fetched Successfully",
+      data: result,
+    });
+
+
+  } catch (error) {
+    console.log(error);
     res.status(500).json({
       status: false,
       message: "Internal Server Error",

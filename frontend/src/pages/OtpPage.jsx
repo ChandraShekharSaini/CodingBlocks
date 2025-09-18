@@ -1,4 +1,4 @@
-import React, { useState ,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import NavBar from "../components/NavBar";
 import Layout from "../components/Layout";
@@ -9,8 +9,7 @@ const OtpPage = () => {
   const queryParams = new URLSearchParams(location.search);
   const email = queryParams.get("email");
 
-    console.log(formData);
-
+  console.log(formData);
 
   useEffect(() => {
     if (email) {
@@ -68,7 +67,7 @@ const OtpPage = () => {
           <input
             onChange={handleChange}
             type="number"
-            placeholder="Enter OTP"
+            placeholder="Enter 6-digit OTP"
             name="otp"
             className=" placeholder-gray-400 outline-none text-[15px] text-white bg-transparent border-b-2 border-[#ad443b]"
           />

@@ -12,7 +12,6 @@ import { useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import CourseCard from "../components/CourseCard";
 
-
 const Home = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -39,14 +38,24 @@ const Home = () => {
     <div>
       <NavBar />
 
-      <div className="bg-[#15171e]  w-full">
+      <div className="bg-[#15171e]  w-full font-mulish">
         <div className=" flex   justify-center text-white text-[40px]">
           <SwiperComp />
         </div>
 
         <HomeOne />
 
-       <CourseCard/>
+        <div className="flex flex-col gap-16 mt-10  py-4 text-white">
+          <div className="flex flex-col gap-3">
+            <p className="ml-6 text-[20px] font-bold">Live Courses</p>
+            <CourseCard typeOfCourse="Live" />
+          </div>
+
+          <div className="flex flex-col gap-3">
+            <p className="ml-6 text-[20px] font-bold">Classroom Courses</p>
+            <CourseCard typeOfCourse="Classroom" />
+          </div>
+        </div>
 
         <HomeTwo />
 

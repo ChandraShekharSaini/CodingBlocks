@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const NavBar2 = () => {
   return (
     <div className="w-full h-[70px] bg-[#15171e]  flex justify-center">
-      <div className="w-[75%] bg-[#15171e]   text-[#f8f4f8] flex justify-between">
+      <div className="w-[75%] bg-[#15171e]     flex justify-between">
         <img
           src="https://cb3img.s3.ap-south-1.amazonaws.com/img/cblogo.webp"
           alt="logo_image"
@@ -23,7 +23,7 @@ const NavBar2 = () => {
 
               <Link
                 to={"#"}
-                className="hover:text-[#ec7203] text-sm font-mulish transition-colors duration-300"
+                className="hover:text-[#ec7203] text-[#f8f4f8]   hover:no-underline  font-mulish transition-colors duration-300"
               >
                 Learn
               </Link>
@@ -38,7 +38,7 @@ const NavBar2 = () => {
 
               <Link
                 to={"#"}
-                className="hover:text-[#ec7203] text-sm font-mulish transition-colors duration-300"
+                className="hover:text-[#ec7203] text-[#f8f4f8]   hover:no-underline text-sm font-mulish transition-colors duration-300"
               >
                 Practise
               </Link>
@@ -52,7 +52,7 @@ const NavBar2 = () => {
               />
               <Link
                 to={"#"}
-                className="hover:text-[#ec7203] text-sm font-mulish transition-colors duration-300"
+                className="hover:text-[#ec7203] text-sm text-[#f8f4f8]   hover:no-underline font-mulish transition-colors duration-300"
               >
                 Get Hired
               </Link>
@@ -66,7 +66,7 @@ const NavBar2 = () => {
               />
               <Link
                 to={"/code/ide"}
-                className="hover:text-[#ec7203] text-sm font-mulish transition-colors duration-300"
+                className="hover:text-[#ec7203] text-sm text-[#f8f4f8]    hover:no-underline font-mulish transition-colors duration-300"
               >
                 IDE
               </Link>
@@ -74,7 +74,7 @@ const NavBar2 = () => {
           </div>
 
           <Link to={"/user/create-account/sign-in"}>
-            <button className="bg-[#f36c3d] text-sm font-mulish bg-gradient-to-r from-[#f36c3d] via-[#f77639] to-[#fa7f34] px-4 py-2 rounded-sm cursor-pointer">
+            <button className="bg-[#f36c3d] text-sm font-mulish text-[#f8f4f8]    hover:no-underline bg-gradient-to-r from-[#f36c3d] via-[#f77639] to-[#fa7f34] px-4 py-2 rounded-sm cursor-pointer">
               Login/Signup
             </button>
           </Link>
