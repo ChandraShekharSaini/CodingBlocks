@@ -1,5 +1,5 @@
 const useAuthentication = () => {
-  const baseUrlDev = "http://localhost:3400";
+ // const baseUrlDev = "http://localhost:3400";
   const baseUrlProd = "https://codingbloacks-backend.vercel.app";
 
   const handleGoogleAuth = () => {

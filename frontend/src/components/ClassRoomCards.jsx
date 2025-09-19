@@ -3,6 +3,8 @@ import axios from "axios";
 import { createContext, useState, useEffect } from "react";
 import CCared from "./CCared";
 
+import {mentorCourseAPI} from "../utils/Api"
+
 export const ClassRoomCard = ({ typeOfCourse  }) => {
 
   console.log(typeOfCourse);
@@ -12,8 +14,8 @@ export const ClassRoomCard = ({ typeOfCourse  }) => {
   useEffect(() => {
     const getCourseData = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:3400/api/v2/mentor/course/get/course/${typeOfCourse}`
+        const response = await mentorCourseAPI.get(
+          `/get/course/${typeOfCourse}`
         );
 
         console.log(response.data);

@@ -495,6 +495,7 @@ import React, { useState } from "react";
 import { DatePicker, TimePicker } from "rsuite";
 import "rsuite/dist/rsuite.min.css";
 import axios from "axios";
+import {mentorCourseAPI} from "../utils/Api"
 
 const CourseForm = () => {
   const [formData, setFormData] = useState({
@@ -553,8 +554,8 @@ const CourseForm = () => {
     const mentorId = "68c98a0b7f0db5defb4a95cb"; // example mentor ID
 
     try {
-      const response = await axios.post(
-        `http://localhost:3400/api/v2/mentor/course/post/course/${mentorId}`,
+      const response = await mentorCourseAPI.post(
+        `/post/course/${mentorId}`,
         payload
       );
       console.log("Course created successfully:", response.data);

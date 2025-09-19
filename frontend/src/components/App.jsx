@@ -2,6 +2,7 @@
 import axios from "axios";
 import { createContext, useState, useEffect } from "react";
 import CCared from "./CCared";
+import {mentorCourseAPI} from "../utils/Api"
 
 export const App = () => {
 
@@ -11,8 +12,8 @@ export const App = () => {
   useEffect(() => {
     const getCourseData = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:3400/api/v2/mentor/course/get/course`
+        const response = await mentorCourseAPI.get(
+          `/get/course`
         );
 
         console.log(response.data.course);

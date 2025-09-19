@@ -12,8 +12,8 @@ export const CourseCard = ({ typeOfCourse }) => {
   useEffect(() => {
     const getCourseData = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:3400/api/v2/mentor/course/get/course/limit?type=${typeOfCourse}&limit=${3}`
+        const response = await mentorCourseAPI.get(
+          `/limit?type=${typeOfCourse}&limit=${3}`
         );
         setCourses(response.data.data);
       } catch (error) {

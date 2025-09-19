@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin:process.env.FRONTEND_URL,
     credentials: true,
     methods: ["GET", "POST", "DELETE"],
   })
@@ -50,7 +50,7 @@ app.get(
 
     console.log(token);
 
-    res.redirect(`http://localhost:5173?user=${token}`);
+    res.redirect(`${process.env.FRONTEND_URL}?user=${token}`);
   }
 );
 
@@ -76,7 +76,7 @@ app.get(
 
     console.log(token);
 
-    res.redirect(`http://localhost:5173?user=${token}`);
+    res.redirect(`${process.env.FRONTEND_URL}?user=${token}`);
   }
 );
 
@@ -94,7 +94,7 @@ app.get("/", (req, res) => {
 
 // ================== DB Connection ==================
 mongoose
-  .connect("mongodb://127.0.0.1:27017/codingblocks", {
+  .connect(process.env.MONGODB_URL , {
     appName: "CodingBlocks",
   })
   .then(() => {
