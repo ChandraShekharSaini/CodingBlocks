@@ -58,6 +58,9 @@ export const signIn = async (req, res, next) => {
   console.log(typeof username);
   console.log(typeof password);
 
+  console.log(username);
+  console.log(password);
+
   try {
     const existedUser = await User.findOne({ userName: username });
 

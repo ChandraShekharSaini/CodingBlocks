@@ -88,6 +88,10 @@ app.use("/api/v1/mentor/auth", authMentorRoutes);
 app.use("/api/v2/mentor/course", courseRoutes);
 app.use("/api/v3/user/auth", authUserRoutes);
 
+app.get("/", (req, res) => {
+  res.json("Server is running perfectly");
+});
+
 // ================== DB Connection ==================
 mongoose
   .connect("mongodb://127.0.0.1:27017/codingblocks", {

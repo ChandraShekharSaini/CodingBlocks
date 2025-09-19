@@ -3,6 +3,7 @@ import axios from "axios";
 import NavBar from "../components/NavBar";
 import Layout from "../components/Layout";
 import { useNavigate } from "react-router-dom";
+import { userAuthAPI } from "../utils/Api";
 
 const LoginPage = () => {
   const [formData, setformData] = useState({});
@@ -20,8 +21,8 @@ const LoginPage = () => {
     console.log("Inside data", formData);
 
     try {
-      const res = await axios.post(
-        "http://localhost:3400/api/v3/user/auth/signup",
+      const res = await  userAuthAPI.post(
+        "/signup",
         formData,
         {
           headers: {

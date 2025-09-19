@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import NavBar from "../components/NavBar";
 import Layout from "../components/Layout";
+import { userAuthAPI } from "../utils/Api";
 import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
@@ -20,8 +21,8 @@ const LoginPage = () => {
     console.log("Inside data", formData);
 
     try {
-      const res = await axios.post(
-        "http://localhost:3400/api/v3/user/auth/signin",
+      const res = await userAuthAPI.post(
+        "/signin",
         formData,
         {
           headers: {
@@ -30,14 +31,14 @@ const LoginPage = () => {
           withCredentials: true,
         }
       );
-         
+
       console.log(res);
       console.log(res.data.status);
 
       // navigate(`/user/create-account/otp?email=${formData.email}`);
 
       if (res.data.status) {
-         navigate("/user/dashboard");
+        navigate("/user/dashboard");
       }
 
       console.log(res.data.message);
@@ -75,8 +76,6 @@ const LoginPage = () => {
             className=" placeholder-gray-400 outline-none text-[15px] text-white bg-transparent border-b-2 border-[#ad443b]"
           />
 
-
-         
           <input
             onChange={handleChange}
             type="password"
