@@ -4,10 +4,13 @@ import NavBar from "../components/NavBar";
 import Layout from "../components/Layout";
 import { userAuthAPI } from "../utils/Api";
 import { useNavigate } from "react-router-dom";
+import useAuthentication from "../useCustomHooks/useAuthentication";
 
 const LoginPage = () => {
   const [formData, setformData] = useState({});
   const navigate = useNavigate();
+
+  const { handleGoogleAuth, handleGithubAuth } = useAuthentication();
 
   const handleChange = (ev) => {
     const { name, value } = ev.target;
@@ -21,16 +24,12 @@ const LoginPage = () => {
     console.log("Inside data", formData);
 
     try {
-      const res = await userAuthAPI.post(
-        "/signin",
-        formData,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          withCredentials: true,
-        }
-      );
+      const res = await userAuthAPI.post("/signin", formData, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      });
 
       console.log(res);
       console.log(res.data.status);
@@ -45,14 +44,6 @@ const LoginPage = () => {
     } catch (error) {
       console.log(error.message);
     }
-  };
-
-  const handleGoogleAuth = () => {
-    window.location = "http://localhost:3400/auth/google";
-  };
-
-  const handleGithubAuth = () => {
-    window.location = "http://localhost:3400/auth/github";
   };
 
   return (
