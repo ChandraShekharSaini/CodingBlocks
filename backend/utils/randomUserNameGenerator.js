@@ -11,6 +11,16 @@ const randomNames = [
   "NightCrawler=",
 ];
 
+
+export const randomUserNameGenerator1 = (email) => {
+  const num = Math.floor(Math.random() * randomNames.length);
+
+  const namePart = email.split("@")[0];
+  console.log(`${randomNames[num]}_${namePart}`);
+
+  return `${randomNames[num]}_${namePart}`;
+};
+
 export const randomUserNameGenerator = (email, otp) => {
   const num = Math.floor(Math.random() * randomNames.length);
 

@@ -12,9 +12,12 @@ passport.use(
 
       console.log(profile.id);
       try {
+
         const existingUser = await User.findOne({
-          emails: profile.emails[0].value,
+          email: profile.emails[0].value,
         });
+
+        console.log(existingUser);
 
         if (existingUser) {
           return done(null, existingUser);
@@ -33,7 +36,9 @@ passport.use(
 
         return done(null, newUser);
       } catch (err) {
+        console.log("===================err===========================");
         return done(err, null);
+
       }
     }
   )

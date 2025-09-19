@@ -1,11 +1,16 @@
 import mongoose, { Schema } from "mongoose";
 
-const mentorSchema = new Schema({
+const userSchema = new Schema({
   name: {
     type: String,
   },
 
   userName: {
+    type: String,
+    unique: true,
+  },
+
+  password: {
     type: String,
     unique: true,
   },
@@ -44,8 +49,8 @@ const mentorSchema = new Schema({
       unique: true,
     },
   },
-},{timestamps:true});
+});
 
-const Mentor = mongoose.model("mentor", mentorSchema);
+const User = mongoose.model( "user",userSchema);
 
-export default Mentor;
+export default User;

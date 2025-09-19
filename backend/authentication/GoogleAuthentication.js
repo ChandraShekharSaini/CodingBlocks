@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import passport from "passport";
-import User from "../model/mentorSchema.js";
+import Mentor from "../model/mentorSchema.js";
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 
 passport.use(
@@ -15,13 +15,13 @@ passport.use(
 
  
       try {
-        const existingUser = await User.findOne({ emails:profile.emails[0].value});
+        const existingUser = await Mentor.findOne({ email:profile.emails[0].value});
 
         if (existingUser) {
           return cb(null, existingUser);
         }
 
-        const newUser = await User.create({
+        const newUser = await Mentor.create({
           name: profile.displayName,
           email: profile.emails[0].value,
           google: {
@@ -37,7 +37,7 @@ passport.use(
 
        
       } catch (error) {
-        return cb(err, null);
+        return cb(error, null);
       }
     }
   )

@@ -1,8 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link , useNavigate } from "react-router-dom";
 
 const CCared = ({ course, index }) => {
   console.log(index);
+
+  const navigate = useNavigate()
 
   const courseData = {
     features: [
@@ -73,9 +75,9 @@ const CCared = ({ course, index }) => {
           </span>
         </p>
         <Link
+        to={"/user/create-account/sign-in"}
           href={course.enrollLink}
-          target="_blank"
-          rel="noopener noreferrer"
+    
           className="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold py-1.5 rounded-lg text-center cursor-pointer  hover:no-underline text-sm transition duration-300"
         >
           Enroll Now

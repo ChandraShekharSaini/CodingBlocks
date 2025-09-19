@@ -1,33 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import NavBar from "../components/NavBar";
 import Layout from "../components/Layout";
-import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-const OtpPage = () => {
+const LoginPage = () => {
   const [formData, setformData] = useState({});
-  const queryParams = new URLSearchParams(location.search);
-  const email = queryParams.get("email");
-
-  console.log(formData);
-
-  useEffect(() => {
-    if (email) {
-      setformData((prev) => ({ ...prev, email }));
-    }
-  }, [email]);
+  const navigate = useNavigate();
 
   const handleChange = (ev) => {
     const { name, value } = ev.target;
     setformData({ ...formData, [name]: value });
   };
+  console.log(formData);
 
   const handleSubmit = async (ev) => {
     ev.preventDefault();
 
+    console.log("Inside data", formData);
+
     try {
       const res = await axios.post(
-        "http://localhost:3400/api/v1/mentor/auth/verify-otp",
+        "http://localhost:3400/api/v3/user/auth/signup",
         formData,
         {
           headers: {
@@ -36,6 +30,14 @@ const OtpPage = () => {
           withCredentials: true,
         }
       );
+
+      console.log(res.data.status);
+
+      // navigate(`/user/create-account/otp?email=${formData.email}`);
+
+      if (res.data.status) {
+        navigate("/user/create-account/sign-in");
+      }
 
       console.log(res.data.message);
     } catch (error) {
@@ -52,23 +54,23 @@ const OtpPage = () => {
   };
 
   return (
-
+    <Layout>
       <section className="w-full h-[90vh]  border-t-[1px]  font-mulish bg-[#15171e] text-white">
         <form
           onSubmit={handleSubmit}
           className="w-[40%]  gap-5 mx-auto mt-10   flex flex-col border-[1px] rounded-lg px-10 py-10 pb-20"
         >
-          <p className="font-extrabold text-2xl"> Enter OTP</p>
+          <p className="font-extrabold text-2xl">Sign Up</p>
 
           <p className="text-[14px]">
-            Sign In with <span className="text-[#ff6666]">Email</span> Or Mobile
+            Sign In with <span className="text-[#ff6666]">Email</span>
           </p>
 
           <input
             onChange={handleChange}
-            type="number"
-            placeholder="Enter 6-digit OTP"
-            name="otp"
+            type="text"
+            placeholder="Enter Email"
+            name="email"
             className=" placeholder-gray-400 outline-none text-[15px] text-white bg-transparent border-b-2 border-[#ad443b]"
           />
 
@@ -105,8 +107,10 @@ const OtpPage = () => {
           </button>
         </form>
       </section>
-
+    </Layout>
   );
 };
 
-export default OtpPage;
+export default LoginPage;
+
+//  "http://localhost:3400/api/v1/mentor/auth/send-otp"

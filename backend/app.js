@@ -83,8 +83,10 @@ app.get(
 // ================== Auth Routes ==================
 import authMentorRoutes from "./routes/authMentor.routes.js";
 import courseRoutes from "./routes/course.routes.js";
+import authUserRoutes from "./routes/authUser.routes.js";
 app.use("/api/v1/mentor/auth", authMentorRoutes);
 app.use("/api/v2/mentor/course", courseRoutes);
+app.use("/api/v3/user/auth", authUserRoutes);
 
 // ================== DB Connection ==================
 mongoose

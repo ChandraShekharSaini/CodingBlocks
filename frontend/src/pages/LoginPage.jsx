@@ -21,7 +21,7 @@ const LoginPage = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:3400/api/v1/mentor/auth/send-otp",
+        "http://localhost:3400/api/v3/user/auth/signin",
         formData,
         {
           headers: {
@@ -30,10 +30,15 @@ const LoginPage = () => {
           withCredentials: true,
         }
       );
+         
+      console.log(res);
+      console.log(res.data.status);
 
- 
-     navigate(`/user/create-account/otp?email=${formData.email}`);
+      // navigate(`/user/create-account/otp?email=${formData.email}`);
 
+      if (res.data.status) {
+         navigate("/user/dashboard");
+      }
 
       console.log(res.data.message);
     } catch (error) {
@@ -56,17 +61,27 @@ const LoginPage = () => {
           onSubmit={handleSubmit}
           className="w-[40%]  gap-5 mx-auto mt-10   flex flex-col border-[1px] rounded-lg px-10 py-10 pb-20"
         >
-          <p className="font-extrabold text-2xl">Login / Signup</p>
+          <p className="font-extrabold text-2xl">Login</p>
 
           <p className="text-[14px]">
-            Sign In with <span className="text-[#ff6666]">Email</span> Or Mobile
+            Sign In with <span className="text-[#ff6666]">Credentials</span>
           </p>
 
           <input
             onChange={handleChange}
-            type="email"
-            placeholder="Enter Email"
-            name="email"
+            type="text"
+            placeholder="Enter Username"
+            name="username"
+            className=" placeholder-gray-400 outline-none text-[15px] text-white bg-transparent border-b-2 border-[#ad443b]"
+          />
+
+
+         
+          <input
+            onChange={handleChange}
+            type="password"
+            placeholder="Enter Password"
+            name="password"
             className=" placeholder-gray-400 outline-none text-[15px] text-white bg-transparent border-b-2 border-[#ad443b]"
           />
 
@@ -108,3 +123,5 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
+
+//  "http://localhost:3400/api/v1/mentor/auth/send-otp"
